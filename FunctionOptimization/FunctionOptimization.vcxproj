@@ -135,11 +135,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExpModulatedSin.cpp" />
     <ClCompile Include="GeneralFunction.cpp" />
+    <ClCompile Include="HimmelblauFunction.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RastriginFunction.cpp" />
+    <ClCompile Include="RosenbrockFunction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExpModulatedSin.h" />
     <ClInclude Include="GeneralFunction.h" />
+    <ClInclude Include="HimmelblauFunction.h" />
+    <ClInclude Include="RastriginFunction.h" />
+    <ClInclude Include="RosenbrockFunction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
