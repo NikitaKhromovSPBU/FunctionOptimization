@@ -33,6 +33,9 @@
     <ClCompile Include="RosenbrockFunction.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="RectangularArea.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneralFunction.h">
@@ -48,6 +51,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="RosenbrockFunction.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="RectangularArea.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

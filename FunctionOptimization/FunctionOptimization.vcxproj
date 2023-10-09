@@ -140,6 +140,7 @@
     <ClCompile Include="HimmelblauFunction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RastriginFunction.cpp" />
+    <ClCompile Include="RectangularArea.cpp" />
     <ClCompile Include="RosenbrockFunction.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +148,7 @@
     <ClInclude Include="GeneralFunction.h" />
     <ClInclude Include="HimmelblauFunction.h" />
     <ClInclude Include="RastriginFunction.h" />
+    <ClInclude Include="RectangularArea.h" />
     <ClInclude Include="RosenbrockFunction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
