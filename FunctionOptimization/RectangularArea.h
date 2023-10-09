@@ -60,6 +60,7 @@ class RectangularArea
      * \param point A vector of coordinates of the point in question. Must be of length equal to the number of
      * dimensions of the RectangularArea object.
      * \return true if the point lies within the rectangle, false otherwise.
+     * \throw std::exception point size and number of dimensions are not equal.
      */
     bool contains(const std::vector<double> &point) const;
 };

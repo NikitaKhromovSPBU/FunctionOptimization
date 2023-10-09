@@ -135,18 +135,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbsoluteValueDifferenceSC.cpp" />
     <ClCompile Include="ExpModulatedSin.cpp" />
     <ClCompile Include="GeneralFunction.cpp" />
+    <ClCompile Include="GeneralStopCriterion.cpp" />
     <ClCompile Include="HimmelblauFunction.cpp" />
+    <ClCompile Include="IterationsNumberSC.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LeviFunction.cpp" />
     <ClCompile Include="RectangularArea.cpp" />
     <ClCompile Include="RosenbrockFunction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbsoluteValueDifferenceSC.h" />
     <ClInclude Include="ExpModulatedSin.h" />
     <ClInclude Include="GeneralFunction.h" />
+    <ClInclude Include="GeneralStopCriterion.h" />
     <ClInclude Include="HimmelblauFunction.h" />
+    <ClInclude Include="IterationsNumberSC.h" />
     <ClInclude Include="LeviFunction.h" />
     <ClInclude Include="RectangularArea.h" />
     <ClInclude Include="RosenbrockFunction.h" />
