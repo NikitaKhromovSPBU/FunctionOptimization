@@ -139,7 +139,7 @@
     <ClCompile Include="GeneralFunction.cpp" />
     <ClCompile Include="HimmelblauFunction.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RastriginFunction.cpp" />
+    <ClCompile Include="LeviFunction.cpp" />
     <ClCompile Include="RectangularArea.cpp" />
     <ClCompile Include="RosenbrockFunction.cpp" />
   </ItemGroup>
@@ -147,7 +147,7 @@
     <ClInclude Include="ExpModulatedSin.h" />
     <ClInclude Include="GeneralFunction.h" />
     <ClInclude Include="HimmelblauFunction.h" />
-    <ClInclude Include="RastriginFunction.h" />
+    <ClInclude Include="LeviFunction.h" />
     <ClInclude Include="RectangularArea.h" />
     <ClInclude Include="RosenbrockFunction.h" />
   </ItemGroup>

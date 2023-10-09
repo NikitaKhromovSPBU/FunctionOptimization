@@ -27,7 +27,7 @@
     <ClCompile Include="HimmelblauFunction.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="RastriginFunction.cpp">
+    <ClCompile Include="LeviFunction.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="RosenbrockFunction.cpp">
@@ -47,7 +47,7 @@
     <ClInclude Include="HimmelblauFunction.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="RastriginFunction.h">
+    <ClInclude Include="LeviFunction.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="RosenbrockFunction.h">

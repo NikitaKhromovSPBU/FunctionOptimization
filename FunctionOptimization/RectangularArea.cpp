@@ -1,5 +1,14 @@
 #include "RectangularArea.h"
 
+bool RectangularArea::is_valid() const
+{
+    for (size_t i{}; i < _dimensions; ++i) {
+        if (_bounds[2 * i] >= _bounds[2 * i + 1])
+            return false;
+    }
+    return true;
+}
+
 bool RectangularArea::contains(const std::vector<double> &point) const
 {
     if (point.size() != _dimensions)
