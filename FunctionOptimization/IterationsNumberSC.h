@@ -24,5 +24,7 @@ public:
      * \return true if the optimization process should be stopped, false otherwise.
      */
     bool stop(const std::vector<std::vector<double>>& trajectory, const GeneralFunction* function = nullptr) const override;
+
+    ~IterationsNumberSC() override = default;
 };
 
