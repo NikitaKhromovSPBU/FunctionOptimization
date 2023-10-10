@@ -1,6 +1,6 @@
 #include "AbsoluteValueDifferenceSC.h"
 
-bool AbsoluteValueDifferenceSC::stop(const std::vector<std::vector<double>> &trajectory,
+bool AbsoluteValueDifferenceSC::stop_criterion(const std::vector<std::vector<double>> &trajectory,
                                      const GeneralFunction *function) const
 {
     if (!function)

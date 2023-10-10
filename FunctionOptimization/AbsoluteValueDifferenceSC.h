@@ -10,7 +10,8 @@ class AbsoluteValueDifferenceSC : public GeneralStopCriterion
     double _precision;
 
   public:
-    AbsoluteValueDifferenceSC(double precision = 1e-6) : _precision(precision)
+    explicit AbsoluteValueDifferenceSC(size_t iterations_number = 1000, double precision = 1e-6)
+        : GeneralStopCriterion(iterations_number), _precision(precision)
     {
         if (precision <= 0)
             throw std::exception("Precision must be a positive number.");
@@ -37,7 +38,10 @@ class AbsoluteValueDifferenceSC : public GeneralStopCriterion
      * \return true if the optimization process should be stopped, false otherwise.
      * \throw std::exception The size of one of the points in trajectory and the number of dimensions are not equal.
      */
-    bool stop(const std::vector<std::vector<double>> &trajectory, const GeneralFunction *function) const override;
 
     ~AbsoluteValueDifferenceSC() override = default;
+
+  protected:
+    bool stop_criterion(const std::vector<std::vector<double>> &trajectory,
+                        const GeneralFunction *function) const override;
 };

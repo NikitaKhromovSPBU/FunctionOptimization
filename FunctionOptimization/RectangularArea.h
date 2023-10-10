@@ -21,7 +21,7 @@ class RectangularArea
      *
      * @param dimensions Number of dimensions of the RectangularArea object.
      */
-    RectangularArea(size_t dimensions) : _dimensions(dimensions), _bounds(std::vector<double>(2 * dimensions)){};
+    explicit RectangularArea(size_t dimensions) : _dimensions(dimensions), _bounds(std::vector<double>(2 * dimensions)){};
 
     /**
      * Creates a rectangular area with given bounds.
