@@ -178,6 +178,7 @@ DocProject/Help/html
 
 # Documentation folder
 [Dd]ocumentation
+![Dd]ocumentation/Doxyfile
 
 # Click-Once directory
 publish/
