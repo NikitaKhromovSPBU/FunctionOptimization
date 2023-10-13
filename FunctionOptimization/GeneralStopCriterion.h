@@ -30,7 +30,7 @@ class GeneralStopCriterion
         _iterations_number = iterations_number;
     };
 
-    size_t get_iterations_number() const {return _iterations_number};
+    size_t get_iterations_number() const { return _iterations_number; };
 
     virtual ~GeneralStopCriterion() = default;
 
