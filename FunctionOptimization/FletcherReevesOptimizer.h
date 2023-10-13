@@ -8,13 +8,13 @@ class FletcherReevesOptimizer : public GeneralOptimizer
     std::vector<double> grad_prev, grad_new, p;
 
   public:
-    FletcherReevesOptimizer(const GeneralFunction *&f, const std::vector<double> &starting_point, RectangularArea area,
+    FletcherReevesOptimizer(const GeneralFunction *&f, std::vector<double> starting_point, RectangularArea area,
                             const GeneralStopCriterion *&sc);
-    FletcherReevesOptimizer(const GeneralFunction*& f, const std::vector<double>& starting_point,
+    FletcherReevesOptimizer(const GeneralFunction*& f, std::vector<double> starting_point,
         RectangularArea area, GeneralStopCriterion*&& sc);
-    FletcherReevesOptimizer(GeneralFunction*&& f, const std::vector<double>& starting_point,
+    FletcherReevesOptimizer(GeneralFunction*&& f, std::vector<double> starting_point,
         RectangularArea area, const GeneralStopCriterion*& sc);
-    FletcherReevesOptimizer(GeneralFunction*&& f, const std::vector<double>& starting_point,
+    FletcherReevesOptimizer(GeneralFunction*&& f, std::vector<double> starting_point,
         RectangularArea area, GeneralStopCriterion*&& sc);
 
     ~FletcherReevesOptimizer() override = default;
@@ -24,5 +24,3 @@ class FletcherReevesOptimizer : public GeneralOptimizer
 protected:
     void step() override;
 };
-
-const double FletcherReevesOptimizer::golden_ratio{ 1.618033988749894848 };
