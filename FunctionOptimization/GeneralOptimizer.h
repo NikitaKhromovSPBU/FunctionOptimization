@@ -15,6 +15,7 @@
  */
 class GeneralOptimizer
 {
+protected:
     /**
      * Function to optimize.
      */

@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="AbsoluteValueDifferenceSC.cpp" />
     <ClCompile Include="ExpModulatedSin.cpp" />
+    <ClCompile Include="FletcherReevesOptimizer.cpp" />
     <ClCompile Include="GeneralFunction.cpp" />
     <ClCompile Include="GeneralOptimizer.cpp" />
     <ClCompile Include="GeneralStopCriterion.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="AbsoluteValueDifferenceSC.h" />
     <ClInclude Include="ExpModulatedSin.h" />
+    <ClInclude Include="FletcherReevesOptimizer.h" />
     <ClInclude Include="GeneralFunction.h" />
     <ClInclude Include="GeneralOptimizer.h" />
     <ClInclude Include="GeneralStopCriterion.h" />

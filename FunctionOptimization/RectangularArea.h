@@ -48,6 +48,16 @@ class RectangularArea
     };
 
     /**
+     * Get i-th bound.
+     * For more info on bounds see _bounds.
+     * 
+     * \param i Number of the bound.
+     * \return Reference to the bound value.
+     */
+    double& operator[](size_t i);
+    const double operator[](size_t i) const;
+
+    /**
      * Checks whether the RectangularArea object has valid bounds.
      *
      * \return true if the bounds are valid, false otherwise.

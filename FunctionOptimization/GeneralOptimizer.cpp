@@ -2,7 +2,8 @@
 
 GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<double> &starting_point,
                                    RectangularArea area, const GeneralStopCriterion *&sc)
-    : _area(std::move(area)), _trajectory({starting_point})
+    : _area(std::move(area)), _trajectory({starting_point}),
+      _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
     switch (f->get_type())
     {
@@ -35,7 +36,8 @@ GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<
 
 GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<double> &starting_point,
                                    RectangularArea area, GeneralStopCriterion *&&sc)
-    : _area(std::move(area)), _sc(sc), _trajectory({starting_point})
+    : _area(std::move(area)), _sc(sc), _trajectory({starting_point}),
+      _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
     switch (f->get_type())
     {
@@ -59,7 +61,8 @@ GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<
 
 GeneralOptimizer::GeneralOptimizer(GeneralFunction *&&f, const std::vector<double> &starting_point,
                                    RectangularArea area, const GeneralStopCriterion *&sc)
-    : _area(std::move(area)), _function(f), _trajectory({starting_point})
+    : _area(std::move(area)), _function(f), _trajectory({starting_point}),
+      _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
     f = nullptr;
 
@@ -77,7 +80,8 @@ GeneralOptimizer::GeneralOptimizer(GeneralFunction *&&f, const std::vector<doubl
 
 GeneralOptimizer::GeneralOptimizer(GeneralFunction *&&f, const std::vector<double> &starting_point,
                                    RectangularArea area, GeneralStopCriterion *&&sc)
-    : _area(std::move(area)), _function(f), _sc(sc), _trajectory({starting_point})
+    : _area(std::move(area)), _function(f), _sc(sc), _trajectory({starting_point}),
+      _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
     f = nullptr;
 
@@ -90,5 +94,5 @@ double GeneralOptimizer::optimize()
     {
         step();
     }
-    return _function->evaluate(*_trajectory.rbegin());
+    return _result_function_value = _function->evaluate(*_trajectory.rbegin());
 }

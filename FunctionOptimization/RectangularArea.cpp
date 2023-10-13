@@ -1,5 +1,15 @@
 #include "RectangularArea.h"
 
+double& RectangularArea::operator[](size_t i)
+{
+    return _bounds[i];
+}
+
+const double RectangularArea::operator[](size_t i) const
+{
+    return _bounds[i];
+}
+
 bool RectangularArea::is_valid() const
 {
     for (size_t i{}; i < _dimensions; ++i) {
