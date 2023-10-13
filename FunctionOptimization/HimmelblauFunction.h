@@ -9,7 +9,7 @@
 class HimmelblauFunction : public GeneralFunction
 {
   public:
-    HimmelblauFunction() : GeneralFunction(2){};
+    HimmelblauFunction() : GeneralFunction(2, FunctionType::Himmelblau){};
 
     double evaluate(const std::vector<double> &parameters) const override;
 

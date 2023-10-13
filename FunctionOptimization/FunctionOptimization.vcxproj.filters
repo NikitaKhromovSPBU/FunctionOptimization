@@ -45,6 +45,9 @@
     <ClCompile Include="IterationsNumberSC.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="GeneralOptimizer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneralFunction.h">
@@ -72,6 +75,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="IterationsNumberSC.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneralOptimizer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,11 +7,21 @@
  */
 class GeneralStopCriterion
 {
+  public:
+    enum class StopCriterionType
+    {
+        AbsoluteValueDifference,
+        IterationsNumber,
+    };
+
   protected:
     size_t _iterations_number;
 
+    StopCriterionType _sc_type;
+
   public:
-    explicit GeneralStopCriterion(size_t iterations_number = 1000) : _iterations_number(iterations_number){};
+    GeneralStopCriterion(StopCriterionType sc_type, size_t iterations_number = 1000)
+        : _iterations_number(iterations_number), _sc_type(sc_type){};
 
     /**
      * Checks whether to stop the optimization process based on the given trajectory.
@@ -30,7 +40,12 @@ class GeneralStopCriterion
         _iterations_number = iterations_number;
     };
 
-    size_t get_iterations_number() const { return _iterations_number; };
+    size_t get_iterations_number() const
+    {
+        return _iterations_number;
+    };
+
+    StopCriterionType get_stop_criterion_type() const { return _sc_type; };
 
     virtual ~GeneralStopCriterion() = default;
 

@@ -138,6 +138,7 @@
     <ClCompile Include="AbsoluteValueDifferenceSC.cpp" />
     <ClCompile Include="ExpModulatedSin.cpp" />
     <ClCompile Include="GeneralFunction.cpp" />
+    <ClCompile Include="GeneralOptimizer.cpp" />
     <ClCompile Include="GeneralStopCriterion.cpp" />
     <ClCompile Include="HimmelblauFunction.cpp" />
     <ClCompile Include="IterationsNumberSC.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="AbsoluteValueDifferenceSC.h" />
     <ClInclude Include="ExpModulatedSin.h" />
     <ClInclude Include="GeneralFunction.h" />
+    <ClInclude Include="GeneralOptimizer.h" />
     <ClInclude Include="GeneralStopCriterion.h" />
     <ClInclude Include="HimmelblauFunction.h" />
     <ClInclude Include="IterationsNumberSC.h" />

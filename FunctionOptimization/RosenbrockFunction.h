@@ -10,7 +10,7 @@ class RosenbrockFunction :
     public GeneralFunction
 {
 public:
-    RosenbrockFunction() : GeneralFunction(3) {};
+    RosenbrockFunction() : GeneralFunction(3, FunctionType::Rosenbrock) {};
 
     double evaluate(const std::vector<double>& parameters) const override;
 

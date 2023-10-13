@@ -6,7 +6,8 @@
  */
 class ExpModulatedSin : public GeneralFunction
 {
-    ExpModulatedSin() : GeneralFunction(2){};
+public:
+    ExpModulatedSin() : GeneralFunction(2, FunctionType::ExpSin){};
 
     double evaluate(const std::vector<double> &parameters) const override;
 

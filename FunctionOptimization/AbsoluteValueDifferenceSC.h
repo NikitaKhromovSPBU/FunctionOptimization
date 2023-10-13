@@ -11,11 +11,13 @@ class AbsoluteValueDifferenceSC : public GeneralStopCriterion
 
   public:
     explicit AbsoluteValueDifferenceSC(size_t iterations_number = 1000, double precision = 1e-6)
-        : GeneralStopCriterion(iterations_number), _precision(precision)
+        : GeneralStopCriterion(StopCriterionType::AbsoluteValueDifference, iterations_number), _precision(precision)
     {
         if (precision <= 0)
             throw std::exception("Precision must be a positive number.");
     };
+
+    AbsoluteValueDifferenceSC(const AbsoluteValueDifferenceSC& sc) = default;
 
     void set_precision(double precision)
     {

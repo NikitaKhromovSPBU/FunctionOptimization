@@ -7,7 +7,10 @@
 class IterationsNumberSC : public GeneralStopCriterion
 {
   public:
-    explicit IterationsNumberSC(size_t iterations_number = 1000) : GeneralStopCriterion(iterations_number){};
+    explicit IterationsNumberSC(size_t iterations_number = 1000)
+        : GeneralStopCriterion(StopCriterionType::IterationsNumber, iterations_number){};
+
+    IterationsNumberSC(const IterationsNumberSC& sc) = default;
 
     ~IterationsNumberSC() override = default;
 

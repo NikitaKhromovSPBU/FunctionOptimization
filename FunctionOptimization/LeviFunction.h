@@ -10,7 +10,7 @@ class LeviFunction :
     public GeneralFunction
 {
 public:
-    LeviFunction() : GeneralFunction(2) {};
+    LeviFunction() : GeneralFunction(2a, FunctionType::Levi) {};
 
     double evaluate(const std::vector<double>& parameters) const override;
 
