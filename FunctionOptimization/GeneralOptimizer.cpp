@@ -5,6 +5,9 @@ GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<
     : _area(std::move(area)), _trajectory({starting_point}),
       _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
+    if (!_area.contains(starting_point))
+        throw std::exception("Starting point must be within the given rectangular area.");
+
     switch (f->get_type())
     {
     case GeneralFunction::FunctionType::ExpSin:
@@ -39,6 +42,9 @@ GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<
     : _area(std::move(area)), _sc(sc), _trajectory({starting_point}),
       _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
+    if (!_area.contains(starting_point))
+        throw std::exception("Starting point must be within the given rectangular area.");
+
     switch (f->get_type())
     {
     case GeneralFunction::FunctionType::ExpSin:
@@ -64,6 +70,9 @@ GeneralOptimizer::GeneralOptimizer(GeneralFunction *&&f, const std::vector<doubl
     : _area(std::move(area)), _function(f), _trajectory({starting_point}),
       _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
+    if (!_area.contains(starting_point))
+        throw std::exception("Starting point must be within the given rectangular area.");
+
     f = nullptr;
 
     switch (sc->get_stop_criterion_type())
@@ -83,6 +92,9 @@ GeneralOptimizer::GeneralOptimizer(GeneralFunction *&&f, const std::vector<doubl
     : _area(std::move(area)), _function(f), _sc(sc), _trajectory({starting_point}),
       _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
+    if (!_area.contains(starting_point))
+        throw std::exception("Starting point must be within the given rectangular area.");
+
     f = nullptr;
 
     sc = nullptr;

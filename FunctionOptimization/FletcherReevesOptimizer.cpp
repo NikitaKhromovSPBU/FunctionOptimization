@@ -4,9 +4,9 @@ const double FletcherReevesOptimizer::golden_ratio{ 1.618033988749894848 };
 
 FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std::vector<double> starting_point,
                                                  RectangularArea area, const GeneralStopCriterion *&sc)
-    : GeneralOptimizer(f, std::move(starting_point), area, sc), grad_new(f->get_gradient(starting_point)), p(grad_new)
+    : GeneralOptimizer(f, std::move(starting_point), area, sc), _grad_new(f->get_gradient(starting_point)), _p(_grad_new)
 {
-    for (auto &x : p)
+    for (auto &x : _p)
     {
         x = -x;
     }
@@ -14,10 +14,10 @@ FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std:
 
 FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std::vector<double> starting_point,
                                                  RectangularArea area, GeneralStopCriterion *&&sc)
-    : GeneralOptimizer(f, std::move(starting_point), area, std::move(sc)), grad_new(f->get_gradient(starting_point)),
-      p(grad_new)
+    : GeneralOptimizer(f, std::move(starting_point), area, std::move(sc)), _grad_new(f->get_gradient(starting_point)),
+      _p(_grad_new)
 {
-    for (auto &x : p)
+    for (auto &x : _p)
     {
         x = -x;
     }
@@ -25,10 +25,10 @@ FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std:
 
 FletcherReevesOptimizer::FletcherReevesOptimizer(GeneralFunction *&&f, std::vector<double> starting_point,
                                                  RectangularArea area, const GeneralStopCriterion *&sc)
-    : GeneralOptimizer(std::move(f), std::move(starting_point), area, sc), grad_new(f->get_gradient(starting_point)),
-      p(grad_new)
+    : GeneralOptimizer(std::move(f), std::move(starting_point), area, sc), _grad_new(f->get_gradient(starting_point)),
+      _p(_grad_new)
 {
-    for (auto &x : p)
+    for (auto &x : _p)
     {
         x = -x;
     }
@@ -37,9 +37,9 @@ FletcherReevesOptimizer::FletcherReevesOptimizer(GeneralFunction *&&f, std::vect
 FletcherReevesOptimizer::FletcherReevesOptimizer(GeneralFunction *&&f, std::vector<double> starting_point,
                                                  RectangularArea area, GeneralStopCriterion *&&sc)
     : GeneralOptimizer(std::move(f), std::move(starting_point), area, std::move(sc)),
-      grad_new(f->get_gradient(starting_point)), p(grad_new)
+      _grad_new(f->get_gradient(starting_point)), _p(_grad_new)
 {
-    for (auto &x : p)
+    for (auto &x : _p)
     {
         x = -x;
     }
@@ -68,7 +68,7 @@ void FletcherReevesOptimizer::step()
     std::vector<double> p_moved(dimensions);
     for (size_t i{}; i < dimensions; ++i)
     {
-        p_moved[i] = starting_point[i] + p[i];
+        p_moved[i] = starting_point[i] + _p[i];
     }
 
     double max_alpha = find_interception(p_moved, starting_point, _area);
@@ -82,8 +82,8 @@ void FletcherReevesOptimizer::step()
 
     for (size_t i{}; i < dimensions; ++i)
     {
-        short_vec_temp[i] = starting_point[i] + left_alpha_temp * p[i];
-        long_vec_temp[i] = starting_point[i] + right_alpha_temp * p[i];
+        short_vec_temp[i] = starting_point[i] + left_alpha_temp * _p[i];
+        long_vec_temp[i] = starting_point[i] + right_alpha_temp * _p[i];
     }
 
     left_function_value = _function->evaluate(short_vec_temp);
@@ -110,7 +110,7 @@ void FletcherReevesOptimizer::step()
         {
             for (size_t i{}; i < dimensions; ++i)
             {
-                long_vec_temp[i] = starting_point[i] + right_alpha_temp * p[i];
+                long_vec_temp[i] = starting_point[i] + right_alpha_temp * _p[i];
             }
             right_function_value = _function->evaluate(long_vec_temp);
         }
@@ -119,7 +119,7 @@ void FletcherReevesOptimizer::step()
 
             for (size_t i{}; i < dimensions; ++i)
             {
-                short_vec_temp[i] = starting_point[i] + left_alpha_temp * p[i];
+                short_vec_temp[i] = starting_point[i] + left_alpha_temp * _p[i];
             }
             left_function_value = _function->evaluate(short_vec_temp);
         }
@@ -138,13 +138,13 @@ void FletcherReevesOptimizer::step()
         }
     }
 
-    alpha = (left_alpha + right_alpha) / 2;
+    _alpha = (left_alpha + right_alpha) / 2;
 
     std::vector<double> new_point(dimensions);
 
     for (size_t i{}; i < dimensions; ++i)
     {
-        new_point[i] = starting_point[i] + alpha * p[i];
+        new_point[i] = starting_point[i] + _alpha * _p[i];
     }
 
     if (_function->evaluate(new_point) < _function->evaluate(starting_point))
@@ -152,20 +152,20 @@ void FletcherReevesOptimizer::step()
     else
         _trajectory.push_back(starting_point);
 
-    grad_prev = grad_new;
-    grad_new = _function->get_gradient(new_point);
+    _grad_prev = _grad_new;
+    _grad_new = _function->get_gradient(new_point);
 
     double numerator{}, denominator{};
     for (size_t i{}; i < dimensions; ++i)
     {
-        numerator += grad_new[i] * grad_new[i];
-        denominator += grad_prev[i] * grad_prev[i];
+        numerator += _grad_new[i] * _grad_new[i];
+        denominator += _grad_prev[i] * _grad_prev[i];
     }
 
-    beta = numerator / denominator;
+    _beta = numerator / denominator;
 
     for (size_t i{}; i < dimensions; ++i)
     {
-        p[i] = -grad_new[i] + beta * p[i];
+        _p[i] = -_grad_new[i] + _beta * _p[i];
     }
 }

@@ -8,14 +8,14 @@
 #include "LeviFunction.h"
 #include "RectangularArea.h"
 #include "RosenbrockFunction.h"
+#include "StohasticOptimizer.h"
 
 int main()
 {
-
-    auto rect = RectangularArea(std::vector<double>{-5, 5, -5, 5});
-    const GeneralStopCriterion *sc = new AbsoluteValueDifferenceSC(1000, 1e-16);
+    auto rect = RectangularArea(std::vector<double>{0.5,1.5, 0.5, 1.5});
+    const GeneralStopCriterion *sc = new IterationsNumberSC(100'000);
     const GeneralFunction *func = new LeviFunction();
-    GeneralOptimizer *opt = new FletcherReevesOptimizer(func, std::vector<double>{1.5, 1.5}, rect, sc);
+    GeneralOptimizer *opt = new StohasticOptimizer(func, std::vector<double>{0.8, 0.8}, rect, sc, 0.5, 0.05, 0.6);
 
     opt->optimize();
 

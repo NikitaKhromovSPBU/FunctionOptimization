@@ -147,6 +147,7 @@
     <ClCompile Include="LeviFunction.cpp" />
     <ClCompile Include="RectangularArea.cpp" />
     <ClCompile Include="RosenbrockFunction.cpp" />
+    <ClCompile Include="StohasticOptimizer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbsoluteValueDifferenceSC.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="LeviFunction.h" />
     <ClInclude Include="RectangularArea.h" />
     <ClInclude Include="RosenbrockFunction.h" />
+    <ClInclude Include="StohasticOptimizer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

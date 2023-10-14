@@ -3,9 +3,9 @@
 class FletcherReevesOptimizer : public GeneralOptimizer
 {
   protected:
-    double alpha;
-    double beta;
-    std::vector<double> grad_prev, grad_new, p;
+    double _alpha;
+    double _beta;
+    std::vector<double> _grad_prev, _grad_new, _p;
 
   public:
     FletcherReevesOptimizer(const GeneralFunction *&f, std::vector<double> starting_point, RectangularArea area,
