@@ -15,7 +15,7 @@
  */
 class GeneralOptimizer
 {
-protected:
+  protected:
     /**
      * Function to optimize.
      */
@@ -38,12 +38,12 @@ protected:
     double _result_function_value;
 
   public:
-    GeneralOptimizer(const GeneralFunction *&f, const std::vector<double> &starting_point, RectangularArea area,
-                     const GeneralStopCriterion *&sc);
-    GeneralOptimizer(const GeneralFunction *&f, const std::vector<double> &starting_point, RectangularArea area,
+    GeneralOptimizer(const GeneralFunction *f, const std::vector<double> &starting_point, RectangularArea area,
+                     const GeneralStopCriterion *sc);
+    GeneralOptimizer(const GeneralFunction *f, const std::vector<double> &starting_point, RectangularArea area,
                      GeneralStopCriterion *&&sc);
     GeneralOptimizer(GeneralFunction *&&f, const std::vector<double> &starting_point, RectangularArea area,
-                     const GeneralStopCriterion *&sc);
+                     const GeneralStopCriterion *sc);
     GeneralOptimizer(GeneralFunction *&&f, const std::vector<double> &starting_point, RectangularArea area,
                      GeneralStopCriterion *&&sc);
 
@@ -66,13 +66,15 @@ protected:
 
     /**
      * Only usable after the optimization process, otherwise returns the starting point.
-     * 
+     *
      * \return Last point of the optimization process.
      */
     std::vector<double> get_optimizing_point() const
     {
         return *_trajectory.rbegin();
     };
+
+    size_t trajectory_size() const { return _trajectory.size(); };
 
     virtual ~GeneralOptimizer()
     {

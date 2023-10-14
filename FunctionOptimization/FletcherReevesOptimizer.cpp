@@ -1,10 +1,11 @@
 #include "FletcherReevesOptimizer.h"
 
-const double FletcherReevesOptimizer::golden_ratio{ 1.618033988749894848 };
+const double FletcherReevesOptimizer::golden_ratio{1.618033988749894848};
 
-FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std::vector<double> starting_point,
-                                                 RectangularArea area, const GeneralStopCriterion *&sc)
-    : GeneralOptimizer(f, std::move(starting_point), area, sc), _grad_new(f->get_gradient(starting_point)), _p(_grad_new)
+FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *f, std::vector<double> starting_point,
+                                                 RectangularArea area, const GeneralStopCriterion *sc)
+    : GeneralOptimizer(f, std::move(starting_point), area, sc), _grad_new(f->get_gradient(starting_point)),
+      _p(_grad_new)
 {
     for (auto &x : _p)
     {
@@ -12,7 +13,7 @@ FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std:
     }
 }
 
-FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std::vector<double> starting_point,
+FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *f, std::vector<double> starting_point,
                                                  RectangularArea area, GeneralStopCriterion *&&sc)
     : GeneralOptimizer(f, std::move(starting_point), area, std::move(sc)), _grad_new(f->get_gradient(starting_point)),
       _p(_grad_new)
@@ -24,7 +25,7 @@ FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *&f, std:
 }
 
 FletcherReevesOptimizer::FletcherReevesOptimizer(GeneralFunction *&&f, std::vector<double> starting_point,
-                                                 RectangularArea area, const GeneralStopCriterion *&sc)
+                                                 RectangularArea area, const GeneralStopCriterion *sc)
     : GeneralOptimizer(std::move(f), std::move(starting_point), area, sc), _grad_new(f->get_gradient(starting_point)),
       _p(_grad_new)
 {
@@ -45,7 +46,8 @@ FletcherReevesOptimizer::FletcherReevesOptimizer(GeneralFunction *&&f, std::vect
     }
 }
 
-double find_interception(const std::vector<double> &v, const std::vector<double> &start_point, const RectangularArea &rect)
+double find_interception(const std::vector<double> &v, const std::vector<double> &start_point,
+                         const RectangularArea &rect)
 {
     if (v.size() != rect.get_dimensions())
         throw std::exception("Number of dimensions of vector and rectangle are not equal.");
@@ -61,7 +63,7 @@ double find_interception(const std::vector<double> &v, const std::vector<double>
 
 void FletcherReevesOptimizer::step()
 {
-    const double precision{ 1e-8 };
+    const double precision{1e-8};
 
     const std::vector<double> &starting_point{*_trajectory.rbegin()};
     const size_t dimensions{starting_point.size()};

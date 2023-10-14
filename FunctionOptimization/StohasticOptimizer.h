@@ -5,10 +5,9 @@
 /**
  * Implementation of the stohastic method of optimization.
  */
-class StohasticOptimizer :
-    public GeneralOptimizer
+class StohasticOptimizer : public GeneralOptimizer
 {
-protected:
+  protected:
     /**
      * Probability of generating a point inside the vicinity of the last point.
      */
@@ -27,27 +26,23 @@ protected:
 
     double _current_function_value;
 
-private:
+  private:
     std::mt19937 _generator;
 
     static std::uniform_real_distribution<> _U01;
 
-public:
-    StohasticOptimizer(const GeneralFunction*& f, std::vector<double> starting_point, RectangularArea area,
-        const GeneralStopCriterion*& sc, double p = 0.5, double delta = 1, double alpha = 0.5);
-    StohasticOptimizer(const GeneralFunction*& f, std::vector<double> starting_point,
-        RectangularArea area, GeneralStopCriterion*&& sc, double p = 0.5, double delta = 1, double alpha = 0.5);
-    StohasticOptimizer(GeneralFunction*&& f, std::vector<double> starting_point,
-        RectangularArea area, const GeneralStopCriterion*& sc, double p = 0.5, double delta = 1, double alpha = 0.5);
-    StohasticOptimizer(GeneralFunction*&& f, std::vector<double> starting_point,
-        RectangularArea area, GeneralStopCriterion*&& sc, double p = 0.5, double delta = 1, double alpha = 0.5);
+  public:
+    StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point, RectangularArea area,
+                       const GeneralStopCriterion *sc, double p = 0.5, double delta = 1, double alpha = 0.5);
+    StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point, RectangularArea area,
+                       GeneralStopCriterion *&&sc, double p = 0.5, double delta = 1, double alpha = 0.5);
+    StohasticOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
+                       const GeneralStopCriterion *sc, double p = 0.5, double delta = 1, double alpha = 0.5);
+    StohasticOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
+                       GeneralStopCriterion *&&sc, double p = 0.5, double delta = 1, double alpha = 0.5);
 
     ~StohasticOptimizer() override = default;
 
-protected:
+  protected:
     void step() override;
 };
-
-
-
-

@@ -1,7 +1,7 @@
 #include "GeneralOptimizer.h"
 
-GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<double> &starting_point,
-                                   RectangularArea area, const GeneralStopCriterion *&sc)
+GeneralOptimizer::GeneralOptimizer(const GeneralFunction *f, const std::vector<double> &starting_point,
+                                   RectangularArea area, const GeneralStopCriterion *sc)
     : _area(std::move(area)), _trajectory({starting_point}),
       _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {
@@ -37,7 +37,7 @@ GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<
     }
 }
 
-GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<double> &starting_point,
+GeneralOptimizer::GeneralOptimizer(const GeneralFunction *f, const std::vector<double> &starting_point,
                                    RectangularArea area, GeneralStopCriterion *&&sc)
     : _area(std::move(area)), _sc(sc), _trajectory({starting_point}),
       _result_function_value(std::numeric_limits<double>::quiet_NaN())
@@ -66,7 +66,7 @@ GeneralOptimizer::GeneralOptimizer(const GeneralFunction *&f, const std::vector<
 }
 
 GeneralOptimizer::GeneralOptimizer(GeneralFunction *&&f, const std::vector<double> &starting_point,
-                                   RectangularArea area, const GeneralStopCriterion *&sc)
+                                   RectangularArea area, const GeneralStopCriterion *sc)
     : _area(std::move(area)), _function(f), _trajectory({starting_point}),
       _result_function_value(std::numeric_limits<double>::quiet_NaN())
 {

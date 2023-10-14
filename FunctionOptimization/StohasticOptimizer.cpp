@@ -2,9 +2,9 @@
 
 std::uniform_real_distribution<> StohasticOptimizer::_U01(0.0, 1.0);
 
-StohasticOptimizer::StohasticOptimizer(const GeneralFunction *&f, std::vector<double> starting_point,
-                                       RectangularArea area, const GeneralStopCriterion *&sc, double p,
-                                       double delta, double alpha)
+StohasticOptimizer::StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point,
+                                       RectangularArea area, const GeneralStopCriterion *sc, double p, double delta,
+                                       double alpha)
     : GeneralOptimizer(f, std::move(starting_point), area, sc), _p(p), _delta(delta), _alpha(alpha), _generator(),
       _current_function_value(_function->evaluate(*_trajectory.rbegin()))
 {
@@ -17,9 +17,9 @@ StohasticOptimizer::StohasticOptimizer(const GeneralFunction *&f, std::vector<do
     _generator.seed(rd());
 }
 
-StohasticOptimizer::StohasticOptimizer(const GeneralFunction *&f, std::vector<double> starting_point,
-                                       RectangularArea area, GeneralStopCriterion *&&sc, double p,
-                                       double delta, double alpha)
+StohasticOptimizer::StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point,
+                                       RectangularArea area, GeneralStopCriterion *&&sc, double p, double delta,
+                                       double alpha)
     : GeneralOptimizer(f, std::move(starting_point), area, std::move(sc)), _p(p), _delta(delta), _alpha(alpha),
       _generator(), _current_function_value(_function->evaluate(*_trajectory.rbegin()))
 {
@@ -33,8 +33,7 @@ StohasticOptimizer::StohasticOptimizer(const GeneralFunction *&f, std::vector<do
 }
 
 StohasticOptimizer::StohasticOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
-                                       const GeneralStopCriterion *&sc, double p, double delta,
-                                       double alpha)
+                                       const GeneralStopCriterion *sc, double p, double delta, double alpha)
     : GeneralOptimizer(std::move(f), std::move(starting_point), area, sc), _p(p), _delta(delta), _alpha(alpha),
       _generator(), _current_function_value(_function->evaluate(*_trajectory.rbegin()))
 {

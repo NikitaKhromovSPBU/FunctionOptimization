@@ -34,7 +34,20 @@ class RectangularArea
 
     void set_bounds(const std::vector<double> &bounds)
     {
+        if (bounds.size() % 2 != 0)
+            throw std::exception("Odd number of bounds.");
+
         _bounds = bounds;
+        _dimensions = _bounds.size() / 2;
+    };
+
+    void set_bounds(std::vector<double>&& bounds)
+    {
+        if (bounds.size() % 2 != 0)
+            throw std::exception("The number of bounds must be even.");
+
+        _bounds = std::move(bounds);
+        _dimensions = _bounds.size() / 2;
     };
 
     std::vector<double> get_bounds() const
