@@ -9,6 +9,7 @@
 #include "LeviFunction.h"
 #include "RectangularArea.h"
 #include "RosenbrockFunction.h"
+#include "RelativeDifferenceSC.h"
 
 /**
  * Abstract class for implementing a set of optimization processes.

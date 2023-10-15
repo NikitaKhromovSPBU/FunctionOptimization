@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LeviFunction.cpp" />
     <ClCompile Include="RectangularArea.cpp" />
+    <ClCompile Include="RelativeDifferenceSC.cpp" />
     <ClCompile Include="RosenbrockFunction.cpp" />
     <ClCompile Include="StohasticOptimizer.cpp" />
   </ItemGroup>
@@ -160,6 +161,7 @@
     <ClInclude Include="IterationsNumberSC.h" />
     <ClInclude Include="LeviFunction.h" />
     <ClInclude Include="RectangularArea.h" />
+    <ClInclude Include="RelativeDifferenceSC.h" />
     <ClInclude Include="RosenbrockFunction.h" />
     <ClInclude Include="StohasticOptimizer.h" />
   </ItemGroup>

@@ -11,6 +11,7 @@ class GeneralStopCriterion
     enum class StopCriterionType
     {
         AbsoluteValueDifference,
+        RelativeDifference,
         IterationsNumber,
     };
 

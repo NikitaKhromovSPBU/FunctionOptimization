@@ -31,8 +31,11 @@ GeneralOptimizer::GeneralOptimizer(const GeneralFunction *f, const std::vector<d
         _sc = new AbsoluteValueDifferenceSC(*dynamic_cast<const AbsoluteValueDifferenceSC *>(sc));
         break;
     case GeneralStopCriterion::StopCriterionType::IterationsNumber:
+        _sc = new IterationsNumberSC(*dynamic_cast<const IterationsNumberSC*>(sc));
+        break;
+    case GeneralStopCriterion::StopCriterionType::RelativeDifference:
+        _sc = new RelativeDifferenceSC(*dynamic_cast<const RelativeDifferenceSC*>(sc));
     default:
-        _sc = new IterationsNumberSC(*dynamic_cast<const IterationsNumberSC *>(sc));
         break;
     }
 }
@@ -78,11 +81,14 @@ GeneralOptimizer::GeneralOptimizer(GeneralFunction *&&f, const std::vector<doubl
     switch (sc->get_stop_criterion_type())
     {
     case GeneralStopCriterion::StopCriterionType::AbsoluteValueDifference:
-        _sc = new AbsoluteValueDifferenceSC(*dynamic_cast<const AbsoluteValueDifferenceSC *>(sc));
+        _sc = new AbsoluteValueDifferenceSC(*dynamic_cast<const AbsoluteValueDifferenceSC*>(sc));
         break;
     case GeneralStopCriterion::StopCriterionType::IterationsNumber:
+        _sc = new IterationsNumberSC(*dynamic_cast<const IterationsNumberSC*>(sc));
+        break;
+    case GeneralStopCriterion::StopCriterionType::RelativeDifference:
+        _sc = new RelativeDifferenceSC(*dynamic_cast<const RelativeDifferenceSC*>(sc));
     default:
-        _sc = new IterationsNumberSC(*dynamic_cast<const IterationsNumberSC *>(sc));
         break;
     }
 }

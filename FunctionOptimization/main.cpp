@@ -9,6 +9,7 @@
 #include "RectangularArea.h"
 #include "RosenbrockFunction.h"
 #include "StohasticOptimizer.h"
+#include "RelativeDifferenceSC.h"
 
 int main()
 {
@@ -83,15 +84,18 @@ int main()
         std::cout << std::endl;
 
         std::cout << "Choose the optimization process stopping criterion:\n\n"
-                  << "1) Stop, when the number of iterations is equal to some n\n"
-                  << "2) Stop, when the number of iterations is equal to some n, or when |f(x_{n+1}) - f(x_{n})| < e "
-                     "is fulfilled for some e\n\n";
+            << "1) Stop, when the number of iterations is equal to some n\n"
+            << "2) Stop, when the number of iterations is equal to some n, or when |f(x_{n+1}) - f(x_{n})| < e "
+            "is fulfilled for some e\n"
+            << "3) Stop, when the number of iterations is equal to some n, or when |f(x_{n+1}) - f(x_{n})| / |f(x_{n})| < e "
+            "is fulfilled for some e\n\n";
 
         GeneralStopCriterion *sc{};
         correct_input = false;
         while (!correct_input)
         {
             size_t n;
+            double e;
             std::cin >> input;
             switch (input)
             {
@@ -103,7 +107,6 @@ int main()
                 correct_input = true;
                 break;
             case '2':
-                double e;
                 std::cout << "\nEnter maximum number of iterations n = ";
                 std::cin >> n;
                 std::cout << "\nEnter precision e = ";
@@ -114,6 +117,19 @@ int main()
                     std::cin >> e;
                 }
                 sc = new AbsoluteValueDifferenceSC(n, e);
+                correct_input = true;
+                break;
+            case '3':
+                std::cout << "\nEnter maximum number of iterations n = ";
+                std::cin >> n;
+                std::cout << "\nEnter precision e = ";
+                std::cin >> e;
+                while (e <= 0)
+                {
+                    std::cerr << "Wrong precision value, e must be positive.\n e = ";
+                    std::cin >> e;
+                }
+                sc = new RelativeDifferenceSC(n, e);
                 correct_input = true;
                 break;
             default:
