@@ -68,12 +68,13 @@ void FletcherReevesOptimizer::step()
     const std::vector<double> &starting_point{*_trajectory.rbegin()};
     const size_t dimensions{starting_point.size()};
     std::vector<double> p_moved(dimensions);
-    for (size_t i{}; i < dimensions; ++i)
+   /* for (size_t i{}; i < dimensions; ++i)
     {
         p_moved[i] = starting_point[i] + _p[i];
-    }
+    }*/
 
-    double max_alpha = find_interception(p_moved, starting_point, _area);
+    double max_alpha = find_interception(_p, starting_point, _area);
+    //double max_alpha = find_interception(p_moved, starting_point, _area);
 
     double left_alpha{}, right_alpha{max_alpha},
         left_alpha_temp{right_alpha - (right_alpha - left_alpha) / golden_ratio},
