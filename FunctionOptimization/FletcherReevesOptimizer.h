@@ -10,12 +10,6 @@ class FletcherReevesOptimizer : public GeneralOptimizer
   public:
     FletcherReevesOptimizer(const GeneralFunction *f, std::vector<double> starting_point, RectangularArea area,
                             const GeneralStopCriterion *sc);
-    FletcherReevesOptimizer(const GeneralFunction *f, std::vector<double> starting_point, RectangularArea area,
-                            GeneralStopCriterion *&&sc);
-    FletcherReevesOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
-                            const GeneralStopCriterion *sc);
-    FletcherReevesOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
-                            GeneralStopCriterion *&&sc);
 
     ~FletcherReevesOptimizer() override = default;
 

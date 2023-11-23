@@ -8,8 +8,8 @@
 #include "IterationsNumberSC.h"
 #include "LeviFunction.h"
 #include "RectangularArea.h"
-#include "RosenbrockFunction.h"
 #include "RelativeDifferenceSC.h"
+#include "RosenbrockFunction.h"
 
 /**
  * Abstract class for implementing a set of optimization processes.
@@ -20,7 +20,7 @@ class GeneralOptimizer
     /**
      * Function to optimize.
      */
-    GeneralFunction *_function;
+    const GeneralFunction *_function;
     /**
      * Trajectory of the optimization process.
      */
@@ -28,7 +28,7 @@ class GeneralOptimizer
     /**
      * Stop criterion.
      */
-    GeneralStopCriterion *_sc;
+    const GeneralStopCriterion *_sc;
     /**
      * Area in which the function is optimized.
      */
@@ -41,12 +41,6 @@ class GeneralOptimizer
   public:
     GeneralOptimizer(const GeneralFunction *f, const std::vector<double> &starting_point, RectangularArea area,
                      const GeneralStopCriterion *sc);
-    GeneralOptimizer(const GeneralFunction *f, const std::vector<double> &starting_point, RectangularArea area,
-                     GeneralStopCriterion *&&sc);
-    GeneralOptimizer(GeneralFunction *&&f, const std::vector<double> &starting_point, RectangularArea area,
-                     const GeneralStopCriterion *sc);
-    GeneralOptimizer(GeneralFunction *&&f, const std::vector<double> &starting_point, RectangularArea area,
-                     GeneralStopCriterion *&&sc);
 
     /**
      * Performs the optimization process.
@@ -75,13 +69,12 @@ class GeneralOptimizer
         return *_trajectory.rbegin();
     };
 
-    size_t trajectory_size() const { return _trajectory.size(); };
-
-    virtual ~GeneralOptimizer()
+    size_t trajectory_size() const
     {
-        delete _function;
-        delete _sc;
+        return _trajectory.size();
     };
+
+    virtual ~GeneralOptimizer(){};
 
   protected:
     /**

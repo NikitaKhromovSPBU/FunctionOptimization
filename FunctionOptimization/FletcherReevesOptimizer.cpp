@@ -13,39 +13,6 @@ FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *f, std::
     }
 }
 
-FletcherReevesOptimizer::FletcherReevesOptimizer(const GeneralFunction *f, std::vector<double> starting_point,
-                                                 RectangularArea area, GeneralStopCriterion *&&sc)
-    : GeneralOptimizer(f, std::move(starting_point), area, std::move(sc)), _grad_new(f->get_gradient(starting_point)),
-      _p(_grad_new)
-{
-    for (auto &x : _p)
-    {
-        x = -x;
-    }
-}
-
-FletcherReevesOptimizer::FletcherReevesOptimizer(GeneralFunction *&&f, std::vector<double> starting_point,
-                                                 RectangularArea area, const GeneralStopCriterion *sc)
-    : GeneralOptimizer(std::move(f), std::move(starting_point), area, sc), _grad_new(f->get_gradient(starting_point)),
-      _p(_grad_new)
-{
-    for (auto &x : _p)
-    {
-        x = -x;
-    }
-}
-
-FletcherReevesOptimizer::FletcherReevesOptimizer(GeneralFunction *&&f, std::vector<double> starting_point,
-                                                 RectangularArea area, GeneralStopCriterion *&&sc)
-    : GeneralOptimizer(std::move(f), std::move(starting_point), area, std::move(sc)),
-      _grad_new(f->get_gradient(starting_point)), _p(_grad_new)
-{
-    for (auto &x : _p)
-    {
-        x = -x;
-    }
-}
-
 double find_interception(const std::vector<double> &v, const std::vector<double> &start_point,
                          const RectangularArea &rect)
 {
@@ -64,6 +31,7 @@ double find_interception(const std::vector<double> &v, const std::vector<double>
 void FletcherReevesOptimizer::step()
 {
     const double precision{1e-8};
+    const size_t max_iterations{ 100 };
 
     const std::vector<double> &starting_point{*_trajectory.rbegin()};
     const size_t dimensions{starting_point.size()};
@@ -104,7 +72,7 @@ void FletcherReevesOptimizer::step()
         left_known = true;
     }
 
-    while (right_alpha - left_alpha > precision)
+    for (size_t i{}; right_alpha - left_alpha > precision && i < max_iterations; ++i)
     {
         left_alpha_temp = right_alpha - (right_alpha - left_alpha) / golden_ratio;
         right_alpha_temp = left_alpha + (right_alpha - left_alpha) / golden_ratio;

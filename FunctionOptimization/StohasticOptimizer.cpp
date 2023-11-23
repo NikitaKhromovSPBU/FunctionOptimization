@@ -17,49 +17,6 @@ StohasticOptimizer::StohasticOptimizer(const GeneralFunction *f, std::vector<dou
     _generator.seed(rd());
 }
 
-StohasticOptimizer::StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point,
-                                       RectangularArea area, GeneralStopCriterion *&&sc, double p, double delta,
-                                       double alpha)
-    : GeneralOptimizer(f, std::move(starting_point), area, std::move(sc)), _p(p), _delta(delta), _alpha(alpha),
-      _generator(), _current_function_value(_function->evaluate(*_trajectory.rbegin()))
-{
-    if (_p < 0 || _p > 1)
-        throw std::exception("Probability p must be in range [0,1].");
-    if (_alpha < 0)
-        throw std::exception("Reduction rate alpha must be non-negative");
-
-    std::random_device rd;
-    _generator.seed(rd());
-}
-
-StohasticOptimizer::StohasticOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
-                                       const GeneralStopCriterion *sc, double p, double delta, double alpha)
-    : GeneralOptimizer(std::move(f), std::move(starting_point), area, sc), _p(p), _delta(delta), _alpha(alpha),
-      _generator(), _current_function_value(_function->evaluate(*_trajectory.rbegin()))
-{
-    if (_p < 0 || _p > 1)
-        throw std::exception("Probability p must be in range [0,1].");
-    if (_alpha < 0)
-        throw std::exception("Reduction rate alpha must be non-negative");
-
-    std::random_device rd;
-    _generator.seed(rd());
-}
-
-StohasticOptimizer::StohasticOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
-                                       GeneralStopCriterion *&&sc, double p, double delta, double alpha)
-    : GeneralOptimizer(std::move(f), std::move(starting_point), area, std::move(sc)), _p(p), _delta(delta),
-      _alpha(alpha), _generator(), _current_function_value(_function->evaluate(*_trajectory.rbegin()))
-{
-    if (_p < 0 || _p > 1)
-        throw std::exception("Probability p must be in range [0,1].");
-    if (_alpha < 0)
-        throw std::exception("Reduction rate alpha must be non-negative");
-
-    std::random_device rd;
-    _generator.seed(rd());
-}
-
 void StohasticOptimizer::step()
 {
     const std::vector<double> &last_point = *_trajectory.rbegin();

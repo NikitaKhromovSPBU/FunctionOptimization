@@ -7,9 +7,9 @@
 #include "IterationsNumberSC.h"
 #include "LeviFunction.h"
 #include "RectangularArea.h"
+#include "RelativeDifferenceSC.h"
 #include "RosenbrockFunction.h"
 #include "StohasticOptimizer.h"
-#include "RelativeDifferenceSC.h"
 
 int main()
 {
@@ -84,11 +84,12 @@ int main()
         std::cout << std::endl;
 
         std::cout << "Choose the optimization process stopping criterion:\n\n"
-            << "1) Stop, when the number of iterations is equal to some n\n"
-            << "2) Stop, when the number of iterations is equal to some n, or when |f(x_{n+1}) - f(x_{n})| < e "
-            "is fulfilled for some e\n"
-            << "3) Stop, when the number of iterations is equal to some n, or when |f(x_{n+1}) - f(x_{n})| / |f(x_{n})| < e "
-            "is fulfilled for some e\n\n";
+                  << "1) Stop, when the number of iterations is equal to some n\n"
+                  << "2) Stop, when the number of iterations is equal to some n, or when |f(x_{n+1}) - f(x_{n})| < e "
+                     "is fulfilled for some e\n"
+                  << "3) Stop, when the number of iterations is equal to some n, or when |f(x_{n+1}) - f(x_{n})| / "
+                     "|f(x_{n})| < e "
+                     "is fulfilled for some e\n\n";
 
         GeneralStopCriterion *sc{};
         correct_input = false;
@@ -176,28 +177,28 @@ int main()
             case '2':
                 double p, delta, alpha;
                 std::cout
-                    << "Enter the probability of generating a point inside the vicinity of the last point:\n p = ";
+                    << "Enter the probability of generating a point inside the vicinity of the last point:\np = ";
                 std::cin >> p;
                 while (p < 0 || p > 1)
                 {
-                    std::cerr << "Probability must be within range [0,1].\n p = ";
+                    std::cerr << "Probability must be within range [0,1].\np = ";
                     std::cin >> p;
                 }
 
                 std::cout << "Enter the radius of the ball in the Chebyshev metric in which the new point might be "
-                             "generated with probability p:\n delta = ";
+                             "generated with probability p:\ndelta = ";
                 std::cin >> delta;
                 while (delta <= 0)
                 {
-                    std::cerr << "Radius must be positive.\n delta = ";
+                    std::cerr << "Radius must be positive.\ndelta = ";
                     std::cin >> delta;
                 }
 
-                std::cout << "Enter the delta reduction rate:\n alpha = ";
+                std::cout << "Enter the delta reduction rate:\nalpha = ";
                 std::cin >> alpha;
                 while (alpha <= 0)
                 {
-                    std::cerr << "Reduction rate must be positive.\n alpha = ";
+                    std::cerr << "Reduction rate must be positive.\nalpha = ";
                     std::cin >> alpha;
                 }
 
@@ -212,7 +213,8 @@ int main()
         std::cout << std::endl;
 
         optimizer->optimize();
-        std::cout << "Resulting point: x_" << optimizer->trajectory_size() << " = (";
+        std::cout << "Optimization completed with " << optimizer->trajectory_size() << " iterations\n"
+                  << "Resulting point: x_" << optimizer->trajectory_size() << " = (";
         for (size_t i{}; i < dimensions - 1; ++i)
         {
             std::cout << optimizer->get_optimizing_point()[i] << ", ";

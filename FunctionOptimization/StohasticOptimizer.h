@@ -34,12 +34,6 @@ class StohasticOptimizer : public GeneralOptimizer
   public:
     StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point, RectangularArea area,
                        const GeneralStopCriterion *sc, double p = 0.5, double delta = 1, double alpha = 0.5);
-    StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point, RectangularArea area,
-                       GeneralStopCriterion *&&sc, double p = 0.5, double delta = 1, double alpha = 0.5);
-    StohasticOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
-                       const GeneralStopCriterion *sc, double p = 0.5, double delta = 1, double alpha = 0.5);
-    StohasticOptimizer(GeneralFunction *&&f, std::vector<double> starting_point, RectangularArea area,
-                       GeneralStopCriterion *&&sc, double p = 0.5, double delta = 1, double alpha = 0.5);
 
     ~StohasticOptimizer() override = default;
 
