@@ -5,7 +5,7 @@ std::uniform_real_distribution<> StohasticOptimizer::_U01(0.0, 1.0);
 StohasticOptimizer::StohasticOptimizer(const GeneralFunction *f, std::vector<double> starting_point,
                                        RectangularArea area, const GeneralStopCriterion *sc, double p, double delta,
                                        double alpha)
-    : GeneralOptimizer(f, std::move(starting_point), area, sc), _p(p), _delta(delta), _alpha(alpha), _generator(),
+    : GeneralOptimizer(f, std::move(starting_point), area, sc), _p(p), _delta0(delta), _delta(delta), _alpha(alpha), _generator(),
       _current_function_value(_function->evaluate(*_trajectory.rbegin()))
 {
     if (_p < 0 || _p > 1)
@@ -41,10 +41,12 @@ void StohasticOptimizer::step()
         {
             _current_function_value = new_function_value;
             _trajectory.push_back(std::move(generated_point));
+            _delta = _delta0;
         }
         else
         {
             _trajectory.push_back(last_point);
+            _delta *= _alpha;
         }
     }
     else
@@ -60,12 +62,12 @@ void StohasticOptimizer::step()
         {
             _current_function_value = new_function_value;
             _trajectory.push_back(std::move(generated_point));
+            _delta = _delta0;
         }
         else
         {
             _trajectory.push_back(last_point);
+            _delta *= _alpha;
         }
     }
-
-    _delta *= _alpha;
 }

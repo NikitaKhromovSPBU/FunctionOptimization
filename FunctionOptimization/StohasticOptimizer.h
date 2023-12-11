@@ -17,6 +17,7 @@ class StohasticOptimizer : public GeneralOptimizer
      * Radius of the ball in the Chebyshev metric in which the new point might be generated with probability _p.
      */
     double _delta;
+    double _delta0;
 
     /**
      * _delta reduction rate.
